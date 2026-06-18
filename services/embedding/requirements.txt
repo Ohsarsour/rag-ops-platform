@@ -1,2 +1,8 @@
-# Embedding Service dependencies (pinned versions added in task 2.7)
-# Placeholder — populated when the service is implemented.
+# Embedding Service dependencies (pinned).
+# Web framework + data validation.
+fastapi==0.115.6
+pydantic==2.10.4
+# ASGI server used to run the FastAPI app (app.main:app).
+uvicorn[standard]==0.34.0
+# Embedding model runtime (loads all-MiniLM-L6-v2 at startup).
+sentence-transformers==3.3.1
