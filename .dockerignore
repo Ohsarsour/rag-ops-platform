@@ -1,0 +1,49 @@
+# Shared .dockerignore — keeps build contexts small and excludes
+# tests, caches, and local environments from Docker images.
+
+# Tests (not needed in runtime images)
+**/tests/
+**/*.test.py
+**/conftest.py
+
+# Python caches / compiled files
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+
+# Test / type-check / lint caches
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.hypothesis/
+**/.coverage
+**/htmlcov/
+**/.tox/
+**/.nox/
+
+# Virtual environments
+**/.venv/
+**/venv/
+**/env/
+**/ENV/
+
+# VCS / project metadata
+.git/
+.gitignore
+.dockerignore
+.kiro/
+
+# Editor / OS noise
+**/.idea/
+**/.vscode/
+**/*.swp
+.DS_Store
+Thumbs.db
+
+# Docs / specs (not needed in images)
+README.md
+docs/
+
+# Environment / secrets
+**/.env
+**/.env.*

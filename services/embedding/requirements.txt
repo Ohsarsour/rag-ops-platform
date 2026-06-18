@@ -1,0 +1,2 @@
+# Embedding Service dependencies (pinned versions added in task 2.7)
+# Placeholder — populated when the service is implemented.

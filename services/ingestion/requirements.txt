@@ -1,0 +1,2 @@
+# Ingestion Service dependencies (pinned versions added in task 5.5)
+# Placeholder — populated when the service is implemented.

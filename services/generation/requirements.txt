@@ -1,0 +1,2 @@
+# Generation Service dependencies (pinned versions added in task 8.6)
+# Placeholder — populated when the service is implemented.

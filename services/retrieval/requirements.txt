@@ -1,0 +1,2 @@
+# Retrieval Service dependencies (pinned versions added in task 7.6)
+# Placeholder — populated when the service is implemented.
