@@ -20,7 +20,7 @@ class ModelHolder:
 
     A module-level holder keeps the loaded model accessible to endpoints
     while making readiness explicit: `is_ready()` is True only after the
-    model has finished loading, which `/healthz` relies on (task 2.2).
+    model has finished loading, which `/healthz` relies on.
     """
 
     def __init__(self) -> None:

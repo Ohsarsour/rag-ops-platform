@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from .config import EMBEDDING_DIMENSIONS
 
-# Per-element constraints for batch embedding (Req 2.5).
+# Per-element constraints for batch embedding.
 MAX_BATCH_TEXT_LENGTH = 8192
 
 
@@ -33,7 +33,7 @@ class EmbedResponse(BaseModel):
 
 
 class BatchEmbedRequest(BaseModel):
-    """Batch embedding request (Req 2).
+    """Batch embedding request.
 
     `min_length=1` rejects an empty list ; `max_length=1000` rejects
     batches larger than 1000 . The per-element field validator
@@ -65,7 +65,7 @@ class BatchEmbedRequest(BaseModel):
 
 
 class BatchEmbedResponse(BaseModel):
-    """Batch embedding response (Req 2.1, 2.2)."""
+    """Batch embedding response"""
 
     embeddings: list[list[float]]  # N vectors, aligned to input order
     dimensions: int = EMBEDDING_DIMENSIONS

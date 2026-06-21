@@ -1,9 +1,9 @@
 """Embedding Service FastAPI application.
 
 This module wires the model loader into the application lifecycle and exposes
-the three HTTP endpoints (task 2.2). The model is loaded exactly once in the
+the three HTTP endpoints. The model is loaded exactly once in the
 lifespan handler at startup and released at shutdown; it is also exposed on
-`app.state` so endpoints reuse the single shared instance (Req 1.6).
+`app.state` so endpoints reuse the single shared instance.
 """
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Load the embedding model once on startup; release it on shutdown.
 
     Loading here (rather than per request) means the model load cost is paid
-    a single time and the same instance serves every request (Req 1.6).
+    a single time and the same instance serves every request.
     """
     model_holder.load()
     app.state.model_holder = model_holder
@@ -48,11 +48,10 @@ def _encode_texts(texts: List[str]) -> List[List[float]]:
     `/embed/batch`. Routing every request through the same
     `model.encode(..., normalize_embeddings=False)` call guarantees that a
     text embedded singly and the same text embedded in a batch produce an
-    identical vector (Req 1.5, 2.3 / design Property 2).
+    identical vector.
 
     The model's numpy output is converted to plain Python ``float`` lists so
-    the response is JSON-serialisable and each element is a finite float
-    (Req 1.2).
+    the response is JSON-serialisable and each element is a finite float.
     """
     model = model_holder.model
     # normalize_embeddings=False keeps the raw, deterministic model output and
@@ -67,14 +66,14 @@ def _encode_texts(texts: List[str]) -> List[List[float]]:
 
 @app.post("/embed", response_model=EmbedResponse)
 def embed(request: EmbedRequest) -> EmbedResponse:
-    """Embed a single text into one 384-dim vector (Req 1.1, 1.2, 1.4)."""
+    """Embed a single text into one 384-dim vector"""
     embedding = _encode_texts([request.text])[0]
     return EmbedResponse(embedding=embedding)
 
 
 @app.post("/embed/batch", response_model=BatchEmbedResponse)
 def embed_batch(request: BatchEmbedRequest) -> BatchEmbedResponse:
-    """Embed a list of texts into positionally-aligned vectors (Req 2.1, 2.2)."""
+    """Embed a list of texts into positionally-aligned vectors"""
     embeddings = _encode_texts(request.texts)
     return BatchEmbedResponse(embeddings=embeddings)
 

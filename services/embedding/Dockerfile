@@ -1,4 +1,4 @@
-# Embedding Service — multi-stage build (Req 9.1, 9.2, 9.7).
+# Embedding Service — multi-stage build
 #
 # Stage 1 (builder): installs build toolchains and Python dependencies into an
 # isolated virtualenv. Stage 2 (runtime): copies only that virtualenv plus the
@@ -37,7 +37,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 # `--no-cache-dir` keeps pip's download cache out of the image; upgrading pip
 # first avoids resolver bugs in older versions. Pinned versions live in
-# requirements.txt so the build is deterministic (Req 9.3).
+# requirements.txt so the build is deterministic
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
