@@ -1,2 +1,6 @@
-# Ingestion Service dependencies (pinned versions added in task 5.5)
-# Placeholder — populated when the service is implemented.
+# Ingestion Service dependencies (pinned).
+# Tokenizer for the recursive chunker. We size chunks with the SAME tokenizer
+# the embedding model uses (all-MiniLM-L6-v2) so token counts match the model's
+# 256-token input limit and chunks are never silently truncated at embed time.
+# transformers provides AutoTokenizer; it does not require torch for tokenizing.
+transformers==4.46.3
